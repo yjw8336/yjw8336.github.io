@@ -60,4 +60,24 @@
     
   </entry>
   
+  <entry>
+    <title>linux调整磁盘空间</title>
+    <link href="http://example.com/2021/10/07/linux%E8%B0%83%E6%95%B4%E7%A3%81%E7%9B%98%E7%A9%BA%E9%97%B4/"/>
+    <id>http://example.com/2021/10/07/linux%E8%B0%83%E6%95%B4%E7%A3%81%E7%9B%98%E7%A9%BA%E9%97%B4/</id>
+    <published>2021-10-07T11:22:03.315Z</published>
+    <updated>2021-10-18T06:09:24.072Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="将home分区的10GB空间分给-分区（使用root用户）"><a href="#将home分区的10GB空间分给-分区（使用root用户）" class="headerlink" title="将home分区的10GB空间分给/分区（使用root用户）"></a>将home分区的10GB空间分给/分区（使用root用户）</h4><ol><li><p>查看磁盘分区</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df -h </span><br></pre></td></tr></table></figure></li><li><p>备份home分区文件（需要保证当前位置空间可用）</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -cvf home.tar /home</span><br></pre></td></tr></table></figure></li><li><p>关闭相关进程</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fuser -km /home</span><br></pre></td></tr></table></figure></li><li><p>卸载/home</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">umount /home</span><br></pre></td></tr></table></figure></li><li><p>删除lv</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lvremove /dev/mapper/centos-home</span><br></pre></td></tr></table></figure></li><li><p>拓展/root所在lv</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lvextend -L +10G /dev/mapper/centos-root</span><br></pre></td></tr></table></figure></li><li><p>拓展/root文件系统</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xfs_growfs /dev/mapper/centos-root</span><br></pre></td></tr></table></figure></li><li><p>重建home lv</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lvcreate -L 30G -n /dev/mapper/centos-home</span><br></pre></td></tr></table></figure></li><li><p>创建文件系统</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkfs.xfs /dev/mapper/centos-home</span><br></pre></td></tr></table></figure></li><li><p>挂载home</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mount /dev/mapper/centos-home</span><br></pre></td></tr></table></figure></li><li><p>恢复文件</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar xvf home.tar -C /home</span><br></pre></td></tr></table></figure></li></ol>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h4 id=&quot;将home分区的10GB空间分给-分区（使用root用户）&quot;&gt;&lt;a href=&quot;#将home分区的10GB空间分给-分区（使用root用户）&quot; class=&quot;headerlink&quot; title=&quot;将home分区的10GB空间分给/分区（使用root用户）&quot;&gt;&lt;/a</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
 </feed>
