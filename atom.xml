@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Hexo</title>
+  
+  
+  <link href="http://example.com/atom.xml" rel="self"/>
+  
+  <link href="http://example.com/"/>
+  <updated>2021-10-18T05:54:50.093Z</updated>
+  <id>http://example.com/</id>
+  
+  <author>
+    <name>John Doe</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>docker相关命令</title>
+    <link href="http://example.com/2021/10/18/docker%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4/"/>
+    <id>http://example.com/2021/10/18/docker%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4/</id>
+    <published>2021-10-17T17:40:29.775Z</published>
+    <updated>2021-10-18T05:54:50.093Z</updated>
+    
+    <content type="html"><![CDATA[<p>docker命令记录：</p><ol><li>创建nginx镜像</li></ol><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">docker run --name nginx \</span><br><span class="line"> --network host \</span><br><span class="line"> -v /nginx/files:/files:ro \</span><br><span class="line"> -v /nginx/html:/usr/share/nginx/html:ro \</span><br><span class="line"> -v /nginx/conf.d:/etc/nginx/conf.d:ro \</span><br><span class="line"> -v /nginx/nginx.conf:/etc/nginx/nginx.conf:ro \</span><br><span class="line"> -v /nginx/ssl:/etc/nginx/ssl:ro \</span><br><span class="line"> -v /nginx/logs/:/var/log/nginx/ \</span><br><span class="line"> --env TZ=&#x27;Asia/Shanghai&#x27; \</span><br><span class="line"> -d nginx</span><br></pre></td></tr></table></figure><ol start="2"><li><p>reload nginx配置</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker exec -it nginx bash -c &#x27;nginx -s reload&#x27;</span><br></pre></td></tr></table></figure></li><li><p>speed_test启动命令</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">1.创建volume</span></span><br><span class="line">docker volume create results</span><br><span class="line"><span class="meta">#</span><span class="bash">2.启动容器</span></span><br><span class="line">docker run --name speed_test \</span><br><span class="line">-v results:/SSRSpeed-2.7.3/results \</span><br><span class="line">--ip=10.1.1.160 --network mac1 \</span><br><span class="line">-d ssrt:rc2 python main.py  \</span><br><span class="line">-M all -s speed -g bigAirport \</span><br><span class="line">-yu https://bigairport.icu/api/v1/client/subscribe\?token\=</span><br></pre></td></tr></table></figure></li><li><p>macvlan:</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker network create -d macvlan --subnet=10.1.1.0/24 --gateway=10.1.1.1 -o parent=enp4s0 mac1</span><br><span class="line"></span><br><span class="line">docker run -itd --name c1 --ip=10.1.1.155 --network mac1 busybox</span><br></pre></td></tr></table></figure><p>网络相关：<a href="https://www.cnblogs.com/bakari/p/10893589.html">https://www.cnblogs.com/bakari/p/10893589.html</a></p></li></ol>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;docker命令记录：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;创建nginx镜像&lt;/li&gt;
+&lt;/ol&gt;
+&lt;figure class=&quot;highlight shell&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/sp</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="http://example.com/2021/10/18/hello-world/"/>
+    <id>http://example.com/2021/10/18/hello-world/</id>
+    <published>2021-10-17T16:32:31.589Z</published>
+    <updated>2021-10-17T16:32:31.589Z</updated>
+    
+    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot;&gt;documentation&lt;/a&gt; for</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+</feed>
